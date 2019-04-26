@@ -15,6 +15,12 @@ routes.post('/sessions', validate(validators.Session), handle(controllers.Sessio
 routes.use(authMiddleware)
 
 /**
+ * Users
+ * @type {Router}
+ */
+routes.get('/users', handle(controllers.UserController.index))
+
+/**
  * Ads
  * @type {Router}
  */
@@ -28,6 +34,8 @@ routes.delete('/ads/:id', handle(controllers.AdController.destroy))
  * Purchases
  * @type {Router}
  */
+routes.get('/purchases', handle(controllers.PurchaseController.index))
 routes.post('/purchases', validate(validators.Purchase), handle(controllers.PurchaseController.store))
+routes.post('/purchases/:id/sell', validate(validators.PurchaseSell), handle(controllers.PurchaseSellController.index))
 
 module.exports = routes
